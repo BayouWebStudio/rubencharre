@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruben Charre - Neo Tradicional | San Luis Potosí</title>
+    <meta name="description" content="Artista tatuador especializado en neo tradicional. San Luis Potosí, México. Solo Neo Tats.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #0a0a0a;
+            color: #f5f5f5;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 15px 0;
+            border-bottom: 1px solid #333;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #dc2626;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #f5f5f5;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #dc2626;
+        }
+
+        .lang-toggle {
+            background: #dc2626;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .lang-toggle:hover {
+            background: #b91c1c;
+            transform: translateY(-1px);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(rgba(10, 10, 10, 0.7), rgba(10, 10, 10, 0.7)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="grad" cx="50%" cy="50%" r="50%"><stop offset="0%" style="stop-color:%23dc2626;stop-opacity:0.1" /><stop offset="100%" style="stop-color:%23000;stop-opacity:0" /></radialGradient></defs><rect width="100%" height="100%" fill="url(%23grad)" /></svg>');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            color: #dc2626;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            letter-spacing: 2px;
+        }
+
+        .hero-content .subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: #f5f5f5;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+
+        .hero-content .location {
+            font-size: clamp(1rem, 2.5vw, 1.4rem);
+            color: #dc2626;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #dc2626, #b91c1c);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(220, 38, 38, 0.4);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 50px;
+            color: #dc2626;
+        }
+
+        /* About Section */
+        .about {
+            background: #111;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-image {
+            text-align: center;
+        }
+
+        .about-image img {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #dc2626;
+            box-shadow: 0 0 30px rgba(220, 38, 38, 0.3);
+        }
+
+        .about-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+            background: #0a0a0a;
+            border-radius: 10px;
+            border: 1px solid #333;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #dc2626;
+            display: block;
+        }
+
+        /* Portfolio Section */
+        .portfolio {
+            background: #0a0a0a;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            transition: scale 0.3s ease;
+        }
+
+        .portfolio-item:hover img {
+            scale: 1.1;
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, rgba(220, 38, 38, 0.8), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            align-items: flex-end;
+            padding: 20px;
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        .portfolio-overlay h3 {
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        /* Services Section */
+        .services {
+            background: #111;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: #0a0a0a;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid #333;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            border-color: #dc2626;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(220, 38, 38, 0.2);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: #dc2626;
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            color: #dc2626;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .service-card p {
+            line-height: 1.6;
+            color: #ccc;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: #0a0a0a;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .contact-info h3 {
+            color: #dc2626;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .contact-info p {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .contact-info a {
+            color: #dc2626;
+            text-decoration: none;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: #dc2626;
+            color: white;
+            text-align: center;
+            line-height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: #b91c1c;
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            background: #111;
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid #333;
+        }
+
+        footer p {
+            margin-bottom: 10px;
+        }
+
+        .footer-credit {
+            color: #dc2626;
+            font-weight: bold;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Hidden elements */
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <a href="#home" class="logo">RUBEN CHARRE</a>
+            <ul class="nav-links">
+                <li><a href="#about" class="nav-link" data-es="Acerca" data-en="About">Acerca</a></li>
+                <li><a href="#portfolio" class="nav-link" data-es="Portafolio" data-en="Portfolio">Portafolio</a></li>
+                <li><a href="#services" class="nav-link" data-es="Servicios" data-en="Services">Servicios</a></li>
+                <li><a href="#contact" class="nav-link" data-es="Contacto" data-en="Contact">Contacto</a></li>
+                <li><button class="lang-toggle" onclick="toggleLanguage()" id="langBtn">EN</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>RUBEN CHARRE</h1>
+            <p class="subtitle" data-es="Solo Neo Tradicional / Only Neo Tats" data-en="Neo Traditional Only / Solo Neo Tats">Solo Neo Tradicional / Only Neo Tats</p>
+            <p class="location">San Luis Potosí, México 🇲🇽</p>
+            <a href="#contact" class="cta-button" data-es="Reservar Cita" data-en="Book Appointment">Reservar Cita</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title" data-es="Acerca de Mí" data-en="About Me">Acerca de Mí</h2>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="img/portfolio_1.jpg" alt="Ruben Charre">
+                </div>
+                <div class="about-text">
+                    <p data-es="Artista tatuador especializado en neo tradicional, radicado en San Luis Potosí. Con más de 42K seguidores y un estilo inconfundible de color vibrante e influencia japonesa." data-en="Neo traditional tattoo artist based in San Luis Potosí. With over 42K followers and a distinctive style of vibrant color and Japanese influence.">
+                        Artista tatuador especializado en neo tradicional, radicado en San Luis Potosí. Con más de 42K seguidores y un estilo inconfundible de color vibrante e influencia japonesa.
+                    </p>
+                    <p data-es="Trabajo en Black Soul Tattoo y me especializo exclusivamente en tatuajes neo tradicionales. Mi estilo se caracteriza por líneas boldas, colores saturados y elementos japoneses como geishas, demonios y anime." data-en="I work at Black Soul Tattoo and specialize exclusively in neo traditional tattoos. My style is characterized by bold lines, saturated colors and Japanese elements like geishas, demons and anime.">
+                        Trabajo en Black Soul Tattoo y me especializo exclusivamente en tatuajes neo tradicionales. Mi estilo se caracteriza por líneas boldas, colores saturados y elementos japoneses como geishas, demonios y anime.
+                    </p>
+                    <p data-es="Mi filosofía: 'Tattoos & ninjutsus'. Viajo regularmente para guest spots y estoy patrocinado por Industry Inks USA y NeekDNA." data-en="My philosophy: 'Tattoos & ninjutsus'. I regularly travel for guest spots and am sponsored by Industry Inks USA and NeekDNA.">
+                        Mi filosofía: "Tattoos & ninjutsus". Viajo regularmente para guest spots y estoy patrocinado por Industry Inks USA y NeekDNA.
+                    </p>
+                    
+                    <div class="stats">
+                        <div class="stat-item">
+                            <span class="stat-number">42K+</span>
+                            <span data-es="Seguidores" data-en="Followers">Seguidores</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">329</span>
+                            <span data-es="Posts" data-en="Posts">Posts</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">✅</span>
+                            <span data-es="Verificado" data-en="Verified">Verificado</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <h2 class="section-title" data-es="Mi Trabajo" data-en="My Work">Mi Trabajo</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <img src="img/portfolio_1.jpg" alt="Neo Traditional Tattoo">
+                    <div class="portfolio-overlay">
+                        <h3 data-es="Neo Tradicional" data-en="Neo Traditional">Neo Tradicional</h3>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="img/portfolio_2.jpg" alt="Japanese Style Tattoo">
+                    <div class="portfolio-overlay">
+                        <h3 data-es="Estilo Japonés" data-en="Japanese Style">Estilo Japonés</h3>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="img/portfolio_3.jpg" alt="Anime Portrait">
+                    <div class="portfolio-overlay">
+                        <h3 data-es="Retrato Anime" data-en="Anime Portrait">Retrato Anime</h3>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="img/portfolio_4.jpg" alt="Demon Design">
+                    <div class="portfolio-overlay">
+                        <h3 data-es="Diseño Demonio" data-en="Demon Design">Diseño Demonio</h3>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="img/portfolio_5.jpg" alt="Geisha Tattoo">
+                    <div class="portfolio-overlay">
+                        <h3 data-es="Geisha" data-en="Geisha">Geisha</h3>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="img/portfolio_6.jpg" alt="Animal Design">
+                    <div class="portfolio-overlay">
+                        <h3 data-es="Diseño Animal" data-en="Animal Design">Diseño Animal</h3>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="img/portfolio_7.jpg" alt="Color Work">
+                    <div class="portfolio-overlay">
+                        <h3 data-es="Trabajo Color" data-en="Color Work">Trabajo Color</h3>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="img/portfolio_8.jpg" alt="Bold Lines">
+                    <div class="portfolio-overlay">
+                        <h3 data-es="Líneas Bold" data-en="Bold Lines">Líneas Bold</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title" data-es="Servicios" data-en="Services">Servicios</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🎨</div>
+                    <h3 data-es="Tatuaje Neo Tradicional" data-en="Neo Traditional Tattoo">Tatuaje Neo Tradicional</h3>
+                    <p data-es="Especialización exclusiva en estilo neo tradicional con influencias japonesas y colores vibrantes." data-en="Exclusive specialization in neo traditional style with Japanese influences and vibrant colors.">
+                        Especialización exclusiva en estilo neo tradicional con influencias japonesas y colores vibrantes.
+                    </p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">✏️</div>
+                    <h3 data-es="Diseño Personalizado" data-en="Custom Design">Diseño Personalizado</h3>
+                    <p data-es="Cada pieza es única y diseñada específicamente para cada cliente, adaptada a sus ideas y anatomía." data-en="Each piece is unique and designed specifically for each client, adapted to their ideas and anatomy.">
+                        Cada pieza es única y diseñada específicamente para cada cliente, adaptada a sus ideas y anatomía.
+                    </p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🌈</div>
+                    <h3 data-es="Color Vibrante" data-en="Vibrant Color">Color Vibrante</h3>
+                    <p data-es="Especialista en trabajo de color intenso y saturado que mantiene su vivacidad a través del tiempo." data-en="Specialist in intense and saturated color work that maintains its vibrancy over time.">
+                        Especialista en trabajo de color intenso y saturado que mantiene su vivacidad a través del tiempo.
+                    </p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📐</div>
+                    <h3 data-es="Piezas Grandes" data-en="Large Pieces">Piezas Grandes</h3>
+                    <p data-es="Experiencia en proyectos de gran formato como mangas completas, espaldas y pecho completo." data-en="Experience in large format projects like full sleeves, backs and full chest pieces.">
+                        Experiencia en proyectos de gran formato como mangas completas, espaldas y pecho completo.
+                    </p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">✈️</div>
+                    <h3 data-es="Guest Spots / Viajes" data-en="Guest Spots / Travel">Guest Spots / Viajes</h3>
+                    <p data-es="Disponible para guest spots en otros estudios y ciudades. Contacta para fechas disponibles." data-en="Available for guest spots in other studios and cities. Contact for available dates.">
+                        Disponible para guest spots en otros estudios y ciudades. Contacta para fechas disponibles.
+                    </p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">💬</div>
+                    <h3 data-es="Consultas" data-en="Consultations">Consultas</h3>
+                    <p data-es="Consultas personalizadas para discutir tu idea, presupuesto y planificación del tatuaje." data-en="Personalized consultations to discuss your idea, budget and tattoo planning.">
+                        Consultas personalizadas para discutir tu idea, presupuesto y planificación del tatuaje.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title" data-es="Contacto" data-en="Contact">Contacto</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3 data-es="Reserva tu Cita" data-en="Book Your Appointment">Reserva tu Cita</h3>
+                    <p data-es="Para agendar tu cita o cotización, contáctame por Instagram o visita Black Soul Tattoo." data-en="To schedule your appointment or quote, contact me on Instagram or visit Black Soul Tattoo.">
+                        Para agendar tu cita o cotización, contáctame por Instagram o visita Black Soul Tattoo.
+                    </p>
+                    
+                    <h3 data-es="Instagram" data-en="Instagram">Instagram</h3>
+                    <p><a href="https://instagram.com/rubencharre" target="_blank">@rubencharre</a></p>
+                    <p data-es="42,026 seguidores • Verificado ✅" data-en="42,026 followers • Verified ✅">42,026 seguidores • Verificado ✅</p>
+                    
+                    <h3 data-es="Estudio" data-en="Studio">Estudio</h3>
+                    <p><a href="https://instagram.com/blacksoul_tattooslp" target="_blank">@blacksoul_tattooslp</a></p>
+                    <p>Santos Degollado 203-A</p>
+                    <p>San Luis Potosí, México</p>
+                    
+                    <h3 data-es="Patrocinios" data-en="Sponsorships">Patrocinios</h3>
+                    <p><a href="https://instagram.com/industryinksusa" target="_blank">@industryinksusa</a></p>
+                    <p><a href="https://instagram.com/neekdna" target="_blank">@neekdna</a></p>
+                </div>
+                <div class="contact-info">
+                    <h3 data-es="Proceso de Reserva" data-en="Booking Process">Proceso de Reserva</h3>
+                    <p data-es="1. Envía un DM en Instagram con tu idea" data-en="1. Send a DM on Instagram with your idea">1. Envía un DM en Instagram con tu idea</p>
+                    <p data-es="2. Discutimos el diseño y presupuesto" data-en="2. We discuss the design and budget">2. Discutimos el diseño y presupuesto</p>
+                    <p data-es="3. Agendamos fecha en Black Soul Tattoo" data-en="3. We schedule a date at Black Soul Tattoo">3. Agendamos fecha en Black Soul Tattoo</p>
+                    <p data-es="4. Confirmas con depósito" data-en="4. You confirm with deposit">4. Confirmas con depósito</p>
+                    
+                    <h3 data-es="Importante" data-en="Important">Importante</h3>
+                    <p data-es="• Solo trabajo estilo neo tradicional" data-en="• I only work neo traditional style">• Solo trabajo estilo neo tradicional</p>
+                    <p data-es="• Piezas desde 3 horas mínimo" data-en="• Pieces from 3 hours minimum">• Piezas desde 3 horas mínimo</p>
+                    <p data-es="• Consulta previa obligatoria" data-en="• Prior consultation required">• Consulta previa obligatoria</p>
+                    <p data-es="• Disponible para guest spots" data-en="• Available for guest spots">• Disponible para guest spots</p>
+                    
+                    <div class="social-links">
+                        <a href="https://instagram.com/rubencharre" target="_blank" title="Instagram">📷</a>
+                        <a href="https://instagram.com/blacksoul_tattooslp" target="_blank" title="Black Soul Tattoo">🏪</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Ruben Charre. <span data-es="Todos los derechos reservados." data-en="All rights reserved.">Todos los derechos reservados.</span></p>
+            <p><span data-es="Website by" data-en="Website by">Website by</span> <span class="footer-credit">Bayou Web Studios</span></p>
+        </div>
+    </footer>
+
+    <script>
+        // Language Toggle Functionality
+        let currentLang = localStorage.getItem('language') || 'es';
+        
+        function toggleLanguage() {
+            currentLang = currentLang === 'es' ? 'en' : 'es';
+            localStorage.setItem('language', currentLang);
+            updateLanguage();
+        }
+        
+        function updateLanguage() {
+            const elements = document.querySelectorAll('[data-es][data-en]');
+            const langBtn = document.getElementById('langBtn');
+            
+            elements.forEach(element => {
+                if (currentLang === 'es') {
+                    element.textContent = element.getAttribute('data-es');
+                } else {
+                    element.textContent = element.getAttribute('data-en');
+                }
+            });
+            
+            langBtn.textContent = currentLang === 'es' ? 'EN' : 'ES';
+            document.html.lang = currentLang;
+        }
+        
+        // Initialize language on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            updateLanguage();
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Header background on scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(10, 10, 10, 0.98)';
+            } else {
+                header.style.background = 'rgba(10, 10, 10, 0.95)';
+            }
+        });
+        
+        // Portfolio image lazy loading
+        const portfolioImages = document.querySelectorAll('.portfolio-item img');
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.src; // Trigger load
+                    img.classList.add('loaded');
+                    observer.unobserve(img);
+                }
+            });
+        });
+        
+        portfolioImages.forEach(img => imageObserver.observe(img));
+    </script>
+</body>
+</html>

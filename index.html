@@ -20,7 +20,7 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 
   <!-- Schema -->
   <script type="application/ld+json">
@@ -51,9 +51,9 @@
 
   <style>
     :root {
-      --black: #0a0a0a;
-      --charcoal: #1a1a1a;
-      --gold: #C9A84C;
+      --black: #0a0505;
+      --charcoal: #1a0a0a;
+      --gold: #C0392B;
       --white: #f5f5f0;
       --dim: #888;
       --border: rgba(255,255,255,0.07);
@@ -63,7 +63,7 @@
     body {
       background: var(--black);
       color: var(--white);
-      font-family: 'Inter', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       font-weight: 300;
       line-height: 1.6;
       overflow-x: hidden;
@@ -79,7 +79,7 @@
       border-bottom: 1px solid var(--border);
     }
     .nav-logo {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Bebas Neue', sans-serif;
       font-size: 1.3rem;
       font-weight: 400;
       letter-spacing: 0.12em;
@@ -120,7 +120,7 @@
       position: fixed; bottom: 32px; right: 32px; z-index: 200;
       background: var(--gold);
       color: #000;
-      font-family: 'Inter', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       font-size: 0.72rem;
       font-weight: 500;
       letter-spacing: 0.14em;
@@ -128,12 +128,12 @@
       text-decoration: none;
       padding: 14px 22px;
       border-radius: 2px;
-      box-shadow: 0 4px 24px rgba(201,168,76,0.3);
+      box-shadow: 0 4px 24px rgba(192,57,43,0.3);
       transition: transform 0.2s, box-shadow 0.2s;
     }
     .book-float:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 32px rgba(201,168,76,0.45);
+      box-shadow: 0 8px 32px rgba(192,57,43,0.45);
     }
 
     /* HERO */
@@ -162,7 +162,7 @@
       color: var(--gold); margin-bottom: 16px;
     }
     h1 {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Bebas Neue', sans-serif;
       font-size: clamp(3.5rem, 8vw, 7rem);
       font-weight: 300;
       line-height: 0.95;
@@ -193,7 +193,7 @@
       color: var(--gold); margin-bottom: 48px;
     }
     h2 {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Bebas Neue', sans-serif;
       font-size: clamp(2rem, 4vw, 3.2rem);
       font-weight: 300;
       line-height: 1.1;
@@ -219,7 +219,7 @@
     }
     .stat-item { }
     .stat-num {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Bebas Neue', sans-serif;
       font-size: 2.4rem; font-weight: 300; color: var(--gold);
     }
     .stat-label { font-size: 0.72rem; color: var(--dim); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 4px; }
@@ -294,7 +294,7 @@
       padding: 48px 40px;
       color: var(--dim);
       font-style: italic;
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Bebas Neue', sans-serif;
       font-size: 1.1rem;
     }
 
@@ -306,7 +306,7 @@
       display: flex; justify-content: space-between; align-items: center;
     }
     .footer-logo {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Bebas Neue', sans-serif;
       font-size: 1.1rem; color: var(--dim);
     }
     .footer-links { display: flex; gap: 24px; }
@@ -355,6 +355,7 @@
     <li><a href="/rubencharre/booking.html">Reservaciones</a></li>
     <li><a href="/rubencharre/testimonials.html">Testimonios</a></li>
   </ul>
+  <button id="lang-toggle-btn" onclick="setLang(getLang()==='es'?'en':'es')" style="background:none;border:1px solid rgba(192,57,43,0.4);color:#C0392B;font-size:0.65rem;letter-spacing:0.15em;padding:5px 10px;cursor:pointer;font-family:inherit;transition:all 0.2s;" onmouseover="this.style.background='rgba(192,57,43,0.15)'" onmouseout="this.style.background='none'">ES</button>
   <button class="hamburger" aria-label="Menu" onclick="document.querySelector('.mobile-menu').classList.toggle('open')">
     <span></span><span></span><span></span>
   </button>
@@ -468,6 +469,40 @@
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
   }, { threshold: 0.1 });
   document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+</script>
+
+<script>
+// Bilingual support - auto-detect browser language
+const translations = {
+  es: {
+    nav_about: "Sobre Mí", nav_tattoos: "Tatuajes", nav_booking: "Reservaciones", nav_testimonials: "Testimonios",
+    hero_cta: "Ver Trabajo", section_about: "Sobre Mí", section_tattoos: "Tatuajes",
+    section_booking: "Reservaciones", section_testimonials: "Testimonios",
+    book_btn: "Reserva una Sesión", gallery_btn: "Ver Galería Completa",
+  },
+  en: {
+    nav_about: "About", nav_tattoos: "Tattoos", nav_booking: "Booking", nav_testimonials: "Testimonials",
+    hero_cta: "View Work", section_about: "About", section_tattoos: "Tattoo Work",
+    section_booking: "Booking", section_testimonials: "Testimonials",
+    book_btn: "Book a Session", gallery_btn: "View Full Gallery",
+  }
+};
+
+function getLang() {
+  return localStorage.getItem('lang') || (navigator.language.startsWith('es') ? 'es' : 'en');
+}
+
+function setLang(lang) {
+  localStorage.setItem('lang', lang);
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-es]').forEach(el => {
+    el.textContent = lang === 'es' ? el.dataset.es : el.dataset.en;
+  });
+  const btn = document.getElementById('lang-toggle-btn');
+  if (btn) btn.textContent = lang === 'es' ? 'EN' : 'ES';
+}
+
+document.addEventListener('DOMContentLoaded', () => setLang(getLang()));
 </script>
 </body>
 </html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Merch — Ruben Charre</title>
+<meta name="description" content="Próximamente — Merch oficial de Ruben Charre.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--black:#0a0505;--charcoal:#1a0a0a;--red:#C0392B;--white:#f5f5f0;--dim:#888;--border:rgba(255,255,255,0.07)}
+body{font-family:'DM Sans',sans-serif;background:var(--black);color:var(--white);-webkit-font-smoothing:antialiased;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:20px 40px;background:rgba(10,5,5,0.95);border-bottom:1px solid var(--border);backdrop-filter:blur(12px);}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:0.1em;color:var(--white);text-decoration:none;}
+.nav-links{display:flex;gap:20px;list-style:none;}
+.nav-links a{font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--dim);text-decoration:none;transition:color 0.3s;}
+.nav-links a:hover,.nav-links a.active{color:var(--white);}
+.nav-toggle{display:none;background:none;border:none;color:var(--white);font-size:1.4rem;cursor:pointer;}
+.coming-hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:60px 24px;position:relative;overflow:hidden;}
+.coming-hero::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(192,57,43,0.08) 0%,transparent 70%);pointer-events:none;}
+.coming-label{font-size:0.65rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--red);margin-bottom:24px;display:block;}
+.coming-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(4rem,12vw,9rem);letter-spacing:0.05em;line-height:1;color:var(--white);margin-bottom:16px;}
+.coming-sub{font-size:1.1rem;color:var(--dim);max-width:400px;line-height:1.7;margin-bottom:40px;}
+.notify-form{display:flex;gap:8px;max-width:380px;width:100%;flex-wrap:wrap;justify-content:center;}
+.notify-form input{flex:1;min-width:200px;padding:14px 16px;background:rgba(255,255,255,0.05);border:1px solid var(--border);color:var(--white);font-family:'DM Sans',sans-serif;font-size:0.9rem;outline:none;transition:border-color 0.2s;}
+.notify-form input:focus{border-color:rgba(192,57,43,0.4);}
+.notify-form input::placeholder{color:rgba(136,136,136,0.5);}
+.notify-btn{padding:14px 24px;background:var(--red);color:var(--white);border:none;font-family:'DM Sans',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;transition:opacity 0.2s;}
+.notify-btn:hover{opacity:0.85;}
+.ig-link{display:inline-flex;align-items:center;gap:8px;margin-top:32px;color:var(--dim);font-size:0.8rem;text-decoration:none;transition:color 0.2s;}
+.ig-link:hover{color:var(--red);}
+.float-btn{position:fixed;bottom:28px;right:28px;z-index:999;background:var(--red);color:var(--white);padding:12px 20px;text-decoration:none;font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;}
+footer{position:fixed;bottom:0;left:0;right:0;border-top:1px solid var(--border);padding:20px 40px;display:flex;justify-content:space-between;align-items:center;background:rgba(10,5,5,0.95);}
+.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:0.9rem;letter-spacing:0.1em;color:var(--dim);}
+.footer-back{font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--dim);text-decoration:none;}
+.footer-back:hover{color:var(--white);}
+@media(max-width:768px){nav{padding:16px 20px;} .nav-links{display:none;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:rgba(10,5,5,0.98);padding:20px;gap:16px;border-bottom:1px solid var(--border);z-index:99;} .nav-links.open{display:flex;} .nav-toggle{display:block;} footer{padding:16px 20px;}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="./" class="nav-logo">Ruben Charre</a>
+  <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+  <ul class="nav-links">
+    <li><a href="./">Inicio</a></li>
+    <li><a href="./tattoos.html">Tatuajes</a></li>
+    <li><a href="./clases.html">Clases</a></li>
+    <li><a href="./ilustraciones.html">Ilustraciones</a></li>
+    <li><a href="./merch.html" class="active">Merch</a></li>
+    <li><a href="./booking.html">Reservaciones</a></li>
+  </ul>
+</nav>
+
+<div class="coming-hero">
+  <span class="coming-label">Tienda Oficial</span>
+  <h1 class="coming-title">Próximamente</h1>
+  <p class="coming-sub">Merch oficial de Ruben Charre — diseños únicos inspirados en el arte del tatuaje. Muy pronto.</p>
+  
+  <form class="notify-form" onsubmit="submitNotify(event)">
+    <input type="email" id="notify-email" placeholder="Tu correo electrónico" required>
+    <button type="submit" class="notify-btn">Avisar</button>
+  </form>
+  <p id="notify-success" style="display:none;color:var(--red);font-size:0.85rem;margin-top:16px;">✓ ¡Te avisaremos cuando esté disponible!</p>
+  
+  <a href="https://www.instagram.com/rubencharre/" target="_blank" class="ig-link">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+    Seguir en Instagram para novedades
+  </a>
+</div>
+
+<a href="./booking.html" class="float-btn">Reservar</a>
+
+<footer>
+  <div class="footer-logo">Ruben Charre</div>
+  <a href="./" class="footer-back">← Inicio</a>
+</footer>
+<script>
+document.querySelector('.nav-toggle').addEventListener('click',()=>document.querySelector('.nav-links').classList.toggle('open'));
+function submitNotify(e) {
+  e.preventDefault();
+  document.getElementById('notify-success').style.display = 'block';
+  document.getElementById('notify-email').value = '';
+}
+</script>
+</body>
+</html>

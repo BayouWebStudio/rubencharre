@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clases de Tatuaje — Ruben Charre</title>
+<meta name="description" content="Curso de introducción al tatuaje con Ruben Charre. Aprende los fundamentos del tatuaje profesional en San Luis Potosí.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--black:#0a0505;--charcoal:#1a0a0a;--red:#C0392B;--white:#f5f5f0;--dim:#888;--border:rgba(255,255,255,0.07)}
+body{font-family:'DM Sans',sans-serif;background:var(--black);color:var(--white);-webkit-font-smoothing:antialiased;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:20px 40px;background:rgba(10,5,5,0.95);border-bottom:1px solid var(--border);backdrop-filter:blur(12px);}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:0.1em;color:var(--white);text-decoration:none;}
+.nav-links{display:flex;gap:20px;list-style:none;}
+.nav-links a{font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--dim);text-decoration:none;transition:color 0.3s;}
+.nav-links a:hover,.nav-links a.active{color:var(--white);}
+.nav-toggle{display:none;background:none;border:none;color:var(--white);font-size:1.4rem;cursor:pointer;}
+.page-hero{padding:140px 72px 80px;border-bottom:1px solid var(--border);max-width:1100px;margin:0 auto;}
+.page-label{font-size:0.65rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--red);margin-bottom:20px;display:block;}
+.page-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,8vw,6rem);letter-spacing:0.05em;line-height:1;}
+.body{max-width:1100px;margin:0 auto;padding:80px 72px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;}
+.class-img img{width:100%;display:block;filter:brightness(0.9);}
+.class-info h2{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;letter-spacing:0.05em;color:var(--white);margin-bottom:20px;}
+.class-info p{color:var(--dim);line-height:1.8;margin-bottom:16px;font-size:0.95rem;}
+.class-detail{display:flex;gap:12px;align-items:flex-start;margin-bottom:16px;padding-left:20px;border-left:2px solid var(--red);}
+.detail-label{font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--red);margin-bottom:4px;}
+.detail-value{font-size:0.9rem;color:var(--white);}
+.cta-btn{display:inline-block;margin-top:32px;padding:16px 40px;background:var(--red);color:var(--white);font-family:'DM Sans',sans-serif;font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;text-decoration:none;font-weight:500;transition:opacity 0.2s;}
+.cta-btn:hover{opacity:0.85;}
+.float-btn{position:fixed;bottom:28px;right:28px;z-index:999;background:var(--red);color:var(--white);padding:12px 20px;text-decoration:none;font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;}
+footer{border-top:1px solid var(--border);padding:40px 72px;display:flex;justify-content:space-between;align-items:center;max-width:1100px;margin:0 auto;}
+.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:0.1em;color:var(--dim);}
+.footer-back{font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--dim);text-decoration:none;}
+.footer-back:hover{color:var(--white);}
+@media(max-width:768px){nav{padding:16px 20px;} .nav-links{display:none;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:rgba(10,5,5,0.98);padding:20px;gap:16px;border-bottom:1px solid var(--border);z-index:99;} .nav-links.open{display:flex;} .nav-toggle{display:block;} .page-hero,.body{padding-left:24px;padding-right:24px;} .body{grid-template-columns:1fr;} footer{padding:32px 24px;}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="./" class="nav-logo">Ruben Charre</a>
+  <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+  <ul class="nav-links">
+    <li><a href="./">Inicio</a></li>
+    <li><a href="./tattoos.html">Tatuajes</a></li>
+    <li><a href="./clases.html" class="active">Clases</a></li>
+    <li><a href="./ilustraciones.html">Ilustraciones</a></li>
+    <li><a href="./merch.html">Merch</a></li>
+    <li><a href="./booking.html">Reservaciones</a></li>
+  </ul>
+</nav>
+
+<div class="page-hero">
+  <span class="page-label">Educación</span>
+  <h1 class="page-title">Curso de Tatuaje</h1>
+</div>
+
+<div class="body">
+  <div class="class-img">
+    <img src="./images/class.jpg" alt="Curso de tatuaje Ruben Charre">
+  </div>
+  <div class="class-info">
+    <h2>3er Curso de Introducción al Tatuaje</h2>
+    <p>Con más de 15 años de experiencia en el tatuaje, Ruben Charre comparte los fundamentos necesarios para incursionar en el mundo del tatuaje de forma profesional.</p>
+    <p>Un método estructurado donde aprenderás a hacer un buen tatuaje desde cero — técnica, higiene, diseño, y práctica real.</p>
+    
+    <div class="class-detail">
+      <div>
+        <div class="detail-label">Lugar</div>
+        <div class="detail-value">@blacksoul_tattooslp — San Luis Potosí, MX</div>
+      </div>
+    </div>
+    <div class="class-detail">
+      <div>
+        <div class="detail-label">Nivel</div>
+        <div class="detail-value">Principiantes — Sin experiencia previa requerida</div>
+      </div>
+    </div>
+    <div class="class-detail">
+      <div>
+        <div class="detail-label">Método</div>
+        <div class="detail-value">Fundamentos profesionales del tatuaje</div>
+      </div>
+    </div>
+    <div class="class-detail">
+      <div>
+        <div class="detail-label">Inscripciones</div>
+        <div class="detail-value">DM directo en Instagram</div>
+      </div>
+    </div>
+
+    <a href="https://www.instagram.com/rubencharre/" target="_blank" class="cta-btn">Inscríbete vía Instagram →</a>
+  </div>
+</div>
+
+<a href="./booking.html" class="float-btn">Reservar</a>
+
+<footer>
+  <div class="footer-logo">Ruben Charre</div>
+  <a href="./" class="footer-back">← Inicio</a>
+</footer>
+<script>document.querySelector('.nav-toggle').addEventListener('click',()=>document.querySelector('.nav-links').classList.toggle('open'));</script>
+</body>
+</html>

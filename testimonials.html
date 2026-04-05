@@ -124,7 +124,7 @@
     <h2>Comparte Tu Experiencia</h2>
     <p>¿Tuviste una sesión con Ruben? Nos encantaría escucharte.</p>
 
-    <form action="https://www.instagram.com./" method="get" target="_blank">
+    <form onsubmit="submitTestimonial(event)">
       <div class="form-group">
         <label for="t-name">Tu Nombre</label>
         <input type="text" id="t-name" name="name" placeholder="Tu nombre o usuario">
@@ -143,7 +143,7 @@
         <label for="t-message">Tu Reseña</label>
         <textarea id="t-message" name="message" placeholder="Cuéntanos sobre tu sesión — el diseño, la experiencia, el resultado..."></textarea>
       </div>
-      <button type="submit" class="btn-submit">Enviar vía Instagram →</button>
+      <button type="submit" class="btn-submit">Enviar Reseña</button>
     </form>
   </div>
 </div>
@@ -161,6 +161,38 @@
 </footer>
 
 <a href="./booking.html" class="book-float">Reserva una Sesión</a>
+
+<script>
+async function submitTestimonial(e) {
+  e.preventDefault();
+  var btn = e.target.querySelector('button[type="submit"]') || e.target.querySelector('.btn-submit');
+  var origText = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = 'Enviando...';
+  try {
+    var name = document.getElementById('t-name').value.trim();
+    var body = document.getElementById('t-message').value.trim();
+    var ratingVal = 5;
+    var litStars = document.querySelectorAll('#stars span.lit');
+    if (litStars.length > 0) ratingVal = litStars.length;
+    if (!name || !body) { alert('Por favor llena tu nombre y rese\xf1a.'); btn.disabled = false; btn.textContent = origText; return; }
+    var res = await fetch('https://curious-lemming-262.convex.site/api/testimonials/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ slug: 'rubencharre', name: name, rating: ratingVal, reviewText: body })
+    });
+    if (!res.ok) throw new Error('Network error');
+    e.target.reset();
+    document.querySelectorAll('#stars span').forEach(function(s) { s.classList.remove('lit'); });
+    btn.textContent = '\u2713 \xa1Gracias!';
+    setTimeout(function() { btn.textContent = origText; btn.disabled = false; }, 3000);
+  } catch(err) {
+    alert('Algo sali\xf3 mal. Int\xe9ntalo de nuevo.');
+    btn.textContent = origText;
+    btn.disabled = false;
+  }
+}
+</script>
 
 <script>
   // Stars interaction

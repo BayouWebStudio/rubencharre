@@ -150,11 +150,15 @@
       </div>
 
       <!-- Fallback inquiry form -->
-      <form action="https://www.instagram.com./" method="get" target="_blank" style="margin-top:40px;">
-        <p style="color:var(--dim);font-size:0.82rem;margin-bottom:24px;">O usa este formulario para organizar tus ideas antes de escribir:</p>
+      <form onsubmit="handleBooking(event)" style="margin-top:40px;">
+        <p style="color:var(--dim);font-size:0.82rem;margin-bottom:24px;">O usa este formulario para enviarnos tu consulta directamente:</p>
         <div class="form-group">
           <label for="name">Tu Nombre</label>
           <input type="text" id="name" name="name" placeholder="Tu nombre está bien">
+        </div>
+        <div class="form-group">
+          <label for="b-email">Email *</label>
+          <input type="email" id="b-email" name="email" required placeholder="tu@email.com">
         </div>
         <div class="form-group">
           <label for="concept">Tu Concepto</label>
@@ -178,7 +182,7 @@
             <option>No sé — abierto a ideas</option>
           </select>
         </div>
-        <button type="submit" class="btn-submit">Continuar al DM de Instagram →</button>
+        <button type="submit" class="btn-submit">Enviar Consulta</button>
       </form>
     </div>
   </div>
@@ -197,6 +201,39 @@
 </footer>
 
 <a href="https://www.instagram.com./" target="_blank" rel="noopener" class="book-float">Reserva una Sesión</a>
+
+<script>
+async function handleBooking(e) {
+  e.preventDefault();
+  var btn = e.target.querySelector('button[type="submit"]') || e.target.querySelector('.btn-submit');
+  var origText = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = 'Enviando...';
+  try {
+    var name = document.getElementById('name').value.trim();
+    var email = document.getElementById('b-email').value.trim();
+    var phone = '';
+    var service = (document.getElementById('style') || {}).value || '';
+    var concept = (document.getElementById('concept') || {}).value || '';
+    var placement = (document.getElementById('placement') || {}).value || '';
+    var message = (concept ? 'Concepto: ' + concept : '') + (placement ? '\nZona/Tama\xf1o: ' + placement : '');
+    if (!name || !email || !message.trim()) { alert('Por favor llena los campos requeridos.'); btn.disabled = false; btn.textContent = origText; return; }
+    var res = await fetch('https://curious-lemming-262.convex.site/api/booking/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ slug: 'rubencharre', name: name, email: email, phone: phone || undefined, service: service || undefined, message: message })
+    });
+    if (!res.ok) throw new Error('Network error');
+    e.target.reset();
+    btn.textContent = '\u2713 \xa1Enviado!';
+    setTimeout(function() { btn.textContent = origText; btn.disabled = false; }, 3000);
+  } catch(err) {
+    alert('Algo sali\xf3 mal. Int\xe9ntalo de nuevo.');
+    btn.textContent = origText;
+    btn.disabled = false;
+  }
+}
+</script>
 
 <script>
   const obs = new IntersectionObserver((entries) => {

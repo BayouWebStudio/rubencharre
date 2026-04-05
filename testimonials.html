@@ -84,6 +84,13 @@
       .footer-links { flex-wrap: wrap; justify-content: center; }
       .book-float { bottom: 20px; right: 20px; }
     }
+  
+    .reviews-grid { display: grid; gap: 24px; margin-bottom: 72px; }
+    .review-card { border: 1px solid var(--border); padding: 32px; background: var(--charcoal); }
+    .review-stars { color: var(--gold); font-size: 0.9rem; letter-spacing: 2px; margin-bottom: 12px; }
+    .review-text { color: var(--white); font-size: 0.95rem; line-height: 1.7; margin-bottom: 16px; font-style: italic; }
+    .review-author { color: var(--dim); font-size: 0.8rem; letter-spacing: 0.08em; }
+    .review-date { color: var(--dim); font-size: 0.7rem; margin-top: 4px; }
   </style>
 </head>
 <body>
@@ -115,7 +122,8 @@
 </div>
 
 <div class="testimonials-body">
-  <div class="placeholder-block fade-up">
+  <div id="reviews-grid" class="reviews-grid"></div>
+    <div id="placeholder-block" class="placeholder-block fade-up">
     <p>"Sé el primero en compartir tu experiencia."</p>
     <small>— Esperando la primera voz</small>
   </div>
@@ -249,6 +257,42 @@ function setLang(lang) {
 }
 
 document.addEventListener('DOMContentLoaded', () => setLang(getLang()));
+</script>
+<script>
+(function(){
+  var slug = 'rubencharre';
+  fetch('https://curious-lemming-262.convex.site/api/testimonials/approved?slug=' + slug)
+    .then(function(r){ return r.json(); })
+    .then(function(data){
+      var reviews = data.testimonials || [];
+      if(!reviews.length) return;
+      var ph = document.getElementById('placeholder-block');
+      if(ph) ph.style.display = 'none';
+      var grid = document.getElementById('reviews-grid');
+      if(!grid) {
+        grid = document.createElement('div');
+        grid.id = 'reviews-grid';
+        grid.className = 'reviews-grid';
+        var body = document.querySelector('.testimonials-body') || document.querySelector('.reviews-body');
+        if(body) body.insertBefore(grid, body.firstChild);
+        else return;
+      }
+      reviews.forEach(function(r){
+        var stars = '';
+        for(var i=0;i<(r.rating||5);i++) stars += '★ ';
+        var d = new Date(r.createdAt);
+        var dateStr = d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+        var card = document.createElement('div');
+        card.className = 'review-card fade-up visible';
+        card.innerHTML = '<div class="review-stars">'+stars+'</div>'
+          + '<p class="review-text">"'+r.reviewText.replace(/</g,'&lt;')+'"</p>'
+          + '<p class="review-author">— '+r.name.replace(/</g,'&lt;')+'</p>'
+          + '<p class="review-date">'+dateStr+'</p>';
+        grid.appendChild(card);
+      });
+    })
+    .catch(function(){});
+})();
 </script>
 </body>
 </html>

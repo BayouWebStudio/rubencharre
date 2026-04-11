@@ -355,6 +355,16 @@
     .lb-prev{left:12px}
     .lb-next{right:12px}
     @media(max-width:600px){.lb-nav{width:40px;height:40px;font-size:20px}.lb-prev{left:8px}.lb-next{right:8px}.lb-close{top:12px;right:12px;width:40px;height:40px}}
+
+    .home-testimonials-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 32px; max-width: 1100px; margin-left: auto; margin-right: auto; }
+    @media (min-width: 720px) { .home-testimonials-grid { grid-template-columns: 1fr 1fr; } }
+    .home-testimonial-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 28px; text-align: left; }
+    .home-testimonial-stars { color: var(--gold, var(--accent, #c9a84c)); font-size: 0.9rem; letter-spacing: 0.1em; margin-bottom: 12px; }
+    .home-testimonial-text { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.05rem; font-style: italic; line-height: 1.7; margin-bottom: 16px; opacity: 0.9; }
+    .home-testimonial-author { color: var(--gold, var(--accent, #c9a84c)); font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; }
+    .home-testimonials-viewall { text-align: center; margin-top: 40px; }
+    .home-testimonials-viewall a { color: var(--gold, var(--accent, #c9a84c)); text-decoration: none; font-size: 0.78rem; letter-spacing: 0.15em; text-transform: uppercase; border-bottom: 1px solid currentColor; padding-bottom: 4px; }
+    .home-testimonials-viewall a:hover { opacity: 0.8; }
   </style>
 </head>
 <body>
@@ -549,10 +559,14 @@ document.addEventListener('DOMContentLoaded', () => setLang(getLang()));
 </script>
 <!-- TESTIMONIALS PREVIEW -->
 <section class="testimonials-section">
-  <div style="max-width:800px;margin:0 auto;">
+  <div style="max-width:1100px;margin:0 auto;">
     <p class="section-label fade-up">Testimonios</p>
     <h2 class="fade-up">Lo Que Dicen</h2>
-    <div class="testimonial-placeholder fade-up" style="margin-top:40px;">
+    <div id="home-testimonials-grid" class="home-testimonials-grid"></div>
+    <div id="home-testimonials-viewall" class="home-testimonials-viewall" style="display:none;">
+      <a href="./testimonials.html">Ver Todos los Testimonios &rarr;</a>
+    </div>
+    <div id="home-testimonial-placeholder" class="testimonial-placeholder fade-up" style="margin-top:40px;">
       "Sé el primero en compartir tu experiencia."
     </div>
     <div style="margin-top:32px;" class="fade-up">
@@ -599,6 +613,36 @@ document.addEventListener('DOMContentLoaded', () => setLang(getLang()));
   } catch(e) {}
 })();
 </script>
+
+  <script>
+    (function(){
+      var slug = 'rubencharre';
+      fetch('https://curious-lemming-262.convex.site/api/testimonials/featured?slug=' + encodeURIComponent(slug))
+        .then(function(r){ return r.json(); })
+        .then(function(data){
+          var reviews = (data.testimonials || []);
+          var totalApproved = data.totalApproved || 0;
+          var grid = document.getElementById('home-testimonials-grid');
+          var placeholder = document.getElementById('home-testimonial-placeholder');
+          var viewAll = document.getElementById('home-testimonials-viewall');
+          if (!grid) return;
+          if (reviews.length === 0) return;
+          if (placeholder) placeholder.style.display = 'none';
+          reviews.forEach(function(r){
+            var stars = '';
+            for (var i = 0; i < (r.rating || 5); i++) stars += '\u2605 ';
+            var card = document.createElement('div');
+            card.className = 'home-testimonial-card';
+            card.innerHTML = '<div class="home-testimonial-stars">' + stars + '</div>'
+              + '<p class="home-testimonial-text">\u201C' + r.reviewText.replace(/</g,'&lt;') + '\u201D</p>'
+              + '<span class="home-testimonial-author">\u2014 ' + r.name.replace(/</g,'&lt;') + '</span>';
+            grid.appendChild(card);
+          });
+          if (totalApproved > reviews.length && viewAll) viewAll.style.display = 'block';
+        })
+        .catch(function(){});
+    })();
+  </script>
 </body>
 </html>
 <!-- rebuild Wed Mar 18 08:30:24 CDT 2026 -->
